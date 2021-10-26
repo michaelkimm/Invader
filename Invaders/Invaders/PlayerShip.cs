@@ -32,9 +32,11 @@ namespace Invaders
             {
                 case Direction.Left:
                     Location = new Point(Location.X - 1, Location.Y);
+                    //Location.X -= 1;
                     break;
                 case Direction.Right:
-                    Location.X += 1;
+                    Location = new Point(Location.X + 1, Location.Y);
+                    //Location.X += 1;
                     break;
                 default:
                     break;
