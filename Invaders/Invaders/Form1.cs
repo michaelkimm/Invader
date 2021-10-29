@@ -12,24 +12,33 @@ namespace Invaders
 {
     public partial class Form1 : Form
     {
-        int animationTimerInterval = 33;
+        int animationTimerInterval = 30;
         int gameTimerInterval = 10;
 
+        Rectangle border = new Rectangle(0, 0, 800, 800);
         Game game;
         bool isGameOver = false;
         List<Keys> keysPressed = new List<Keys>();
-        Graphics g;
+
+        int animationCell = 0;
 
         public Form1()
         {
             InitializeComponent();
             InitializeTimer();
+
+            game = new Game(border);
+            game.GameOver += GameOver;
+            game.GameRestart += GameRestart;
         }
 
         void InitializeTimer()
         {
             animationTimer.Interval = animationTimerInterval;
             gameTimer.Interval = gameTimerInterval;
+
+            animationTimer.Start();
+            gameTimer.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -39,6 +48,9 @@ namespace Invaders
 
         private void animationTimer_Tick(object sender, EventArgs e)
         {
+            animationCell++;
+            if (animationCell == 4)
+                animationCell = 0;
             game.Twinkle();
             this.Refresh();
         }
@@ -46,6 +58,9 @@ namespace Invaders
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             game.Go();
+
+            ScoreLabel.Text = game.Score.ToString();
+
             foreach (Keys key in keysPressed)
             {
                 if (key == Keys.Left)
@@ -71,6 +86,9 @@ namespace Invaders
                 if (e.KeyCode == Keys.S)
                 {
                     // 게임을 초기화 하고 타이머를 재 시작 하는 코드
+                    // game.GameStart(this, EventArgs.Empty);
+                    game.RestartGame();
+                    isGameOver = false;
                     return;
                 }
             }
@@ -90,7 +108,26 @@ namespace Invaders
 
         private void Invaders_Paint(object sender, PaintEventArgs e)
         {
-            g = e.Graphics;
+            game.Draw(e.Graphics);
+        }
+
+        void GameOver(object sender, EventArgs e)
+        {
+            ActivateGameOverText(true);
+            isGameOver = true;
+            gameTimer.Stop();
+        }
+
+        void GameRestart(object sender, EventArgs e)
+        {
+            ActivateGameOverText(false);
+            gameTimer.Start();
+        }
+
+        void ActivateGameOverText(bool value)
+        {
+            GameOverLabel.Visible = value;
+            RestartLabel.Visible = value;
         }
     }
 }

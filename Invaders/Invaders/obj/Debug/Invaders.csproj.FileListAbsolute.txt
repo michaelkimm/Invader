@@ -1,0 +1,10 @@
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\obj\Debug\Invaders.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\obj\Debug\Invaders.Form1.resources
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\obj\Debug\Invaders.Properties.Resources.resources
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\obj\Debug\Invaders.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\obj\Debug\Invaders.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\bin\Debug\Invaders.exe.config
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\bin\Debug\Invaders.exe
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\bin\Debug\Invaders.pdb
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\obj\Debug\Invaders.exe
+C:\Users\Admin\Documents\GitHub\Invader\Invaders\Invaders\obj\Debug\Invaders.pdb
