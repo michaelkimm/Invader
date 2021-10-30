@@ -11,9 +11,12 @@ namespace Invaders
     {
         struct Star
         {
-            public Point point;
+            Point point;
             public Pen pen;
             const float radius = 1;
+
+            public void SetPoint(Point point) { this.point = point; }
+            public void SetColor(Color color) { pen.Color = color; }
 
             public Star(Point point, Pen pen)
             {
@@ -25,9 +28,11 @@ namespace Invaders
             {
                 g.DrawEllipse(pen, new Rectangle((int)(point.X - radius * 0.5), (int)(point.Y - radius * 0.5), (int)(2 * radius), (int)(2 * radius)));
             }
+
         }
 
         List<Star> starList = new List<Star>();
+
         Random random = new Random();
         const int STAR_COUNT = 300;
         int twinkleCount = 5;
@@ -42,20 +47,38 @@ namespace Invaders
 
         public void Draw(Graphics g)
         {
-            for (int i = 0; i < STAR_COUNT; i++)
+            foreach (Star star in starList)
             {
-                //starList[i]
-                starList[i].Draw(g);
+                star.Draw(g);
             }
+
+            //for (int i = 0; i < STAR_COUNT; i++)
+            //{
+            //    //starList[i]
+            //    starList[i].Draw(g);
+            //}
         }
 
         public void Twinkle()
         {
-            starList.RemoveRange(starList.Count - twinkleCount, twinkleCount);
             for (int i = 0; i < twinkleCount; i++)
             {
-                makeRandStar();
+                int index = random.Next(0, STAR_COUNT);
+                starList[index].SetPoint(GetRandomPoint());
+                starList[index].SetColor(GetRandomColor());
             }
+
+            //for (int i = 0; i < twinkleCount; i++)
+            //{
+            //    Star turnedOffStar = starQueue.Dequeue();
+            //    twinkleQueue.Enqueue(starQueue.Dequeue());
+            //}
+
+            //// starList.RemoveRange(starList.Count - twinkleCount, twinkleCount);
+            //for (int i = 0; i < twinkleCount; i++)
+            //{
+            //    makeRandStar();
+            //}
         }
         
         void initializeStar()
@@ -66,15 +89,20 @@ namespace Invaders
             }
         }
 
-        Pen RandomPen(Random random)
-        {
-            return new Pen(Color.FromArgb(255, 255 - random.Next(0, 256), 255 - random.Next(0, 256), 255 - random.Next(0, 256)));
-        }
-
         void makeRandStar()
         {
             starList.Add(new Star(new Point(random.Next() % (boundary.Right - boundary.Left), random.Next() % (boundary.Bottom - boundary.Top)),
-                             RandomPen(random)));
+                             new Pen(GetRandomColor())));
+        }
+
+        Point GetRandomPoint()
+        {
+            return new Point(random.Next(boundary.Left, boundary.Right), random.Next(boundary.Top, boundary.Bottom));
+        }
+
+        Color GetRandomColor()
+        {
+            return Color.FromArgb(255, 255 - random.Next(0, 256), 255 - random.Next(0, 256), 255 - random.Next(0, 256));
         }
     }
 }

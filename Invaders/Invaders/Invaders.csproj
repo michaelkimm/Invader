@@ -58,6 +58,8 @@
     </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="Invader.cs" />
+    <Compile Include="InvaderUtility.cs" />
+    <Compile Include="IShooter.cs" />
     <Compile Include="Mover.cs" />
     <Compile Include="PlayerShip.cs" />
     <Compile Include="Program.cs" />

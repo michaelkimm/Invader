@@ -88,7 +88,6 @@ namespace Invaders
                     // 게임을 초기화 하고 타이머를 재 시작 하는 코드
                     // game.GameStart(this, EventArgs.Empty);
                     game.RestartGame();
-                    isGameOver = false;
                     return;
                 }
             }
@@ -121,6 +120,7 @@ namespace Invaders
         void GameRestart(object sender, EventArgs e)
         {
             ActivateGameOverText(false);
+            isGameOver = false;
             gameTimer.Start();
         }
 

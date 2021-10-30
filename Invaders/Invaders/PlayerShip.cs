@@ -70,9 +70,15 @@ namespace Invaders
                 return false;
         }
 
-        public Shot FireShot()
+        public override Shot FireShot()
         {
             return new PlayerShot(Location, Direction.Up, gameBoundaries);
+        }
+
+        public override Shot FireShot(Shot reusableShot)
+        {
+            reusableShot.Location = Location;
+            return reusableShot;
         }
 
         void Died()

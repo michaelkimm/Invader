@@ -12,6 +12,7 @@ namespace Invaders
         protected const int WIDTH = 5;
         protected const int HEIGHT = 15;
 
+        //public bool IsEnabled { get; set; }
 
         Direction direction;
 

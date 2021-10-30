@@ -9,7 +9,7 @@ namespace Invaders
 {
     abstract class Mover
     {
-        public Point Location { get; protected set; }
+        public Point Location { get; set; }
 
         // public Rectangle Area { get { return new Rectangle(new Point(Location.X - image.Size.Width / 2, Location.Y - image.Size.Height / 2), image.Size); } }
 
